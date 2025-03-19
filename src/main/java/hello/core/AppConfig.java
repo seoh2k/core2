@@ -16,8 +16,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration // 설정 구성
 public class AppConfig {
 
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
+
     @Bean // 스프링 컨테이너에 스프링 빈(스프링컨테이너에 등록된 객체)으로 등록
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         // 리팩터링
         // return new MemberServiceImpl(new MemoryMemberRepository());
         return new MemberServiceImpl(memberRepository());
@@ -25,6 +29,8 @@ public class AppConfig {
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
+
         // 리팩터링
         /** return new OrderServiceImpl(
                      new MemoryMemberRepository(),
@@ -38,6 +44,8 @@ public class AppConfig {
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
+
         return new MemoryMemberRepository();
     }
 
